@@ -1,28 +1,44 @@
-# Welcome to your CDK TypeScript project
+# XYZ Infrastructure
 
-This is a blank project for CDK development with TypeScript.
+This project contains the infrastructure for the XYZ project. This project deploys the XYZ FastAPI API application to and AWS EKS Cluster using EKS Blueprints.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Requiremenst
+This project has the following requirements.
+- Linux (Ubuntu, specifically version 22)
+- NodeJS
+- AWS CLI and CDK
+- An AWS Account in which a user or role has the permissions to deploy and manage an EKS cluster and associated serivces.
 
-## Useful commands
+## Steps to deploy
+In order to deploy the XYZ application to a new AWS EKS Cluster, follow the steps below.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+Much of this project was based upon the AWS EKS Blueprints Quick Start project, so use it as a reference if needed. https://aws-quickstart.github.io/cdk-eks-blueprints/getting-started/
 
-First bootstrap your environment if you have not already done so:
-cdk bootstrap aws://<your-account-number>/<region-to-bootstrap>
+1) Clone the project locally.
 
-Next, install all of the node modules with the following command
+2) Install nodejs if not already installed.
+```sudo npm install nodejs```
+3) Install the AWS CLI if not already installed. Here is a link for instructions. https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
-npm install
+4) Install the AWS CDK.
+```npm install -g aws-cdk```
 
-To tear down the infrastructure, run the following command:
-kubectl delete -f xyz_config.yaml
-cdk destroy
+5) Install the necessary npm modules. Execute the following command in the root directory of the project.
+```npm install```
 
-It is possible that not everything gets deleted. You may have to go into CloudFormation and manually
-run the delete command again.
+6) Bootstrap your AWS account if you have not already done so. (Sudo may be required.)
+```cdk bootstrap aws://<your-account-number>/<region-to-bootstrap>```
+
+7) Execute the deploy.sh bash script.
+```sudo bash deploy.sh```
+
+If everything works correctly, you should see the following message displayed in your command window.
+"Passed: The message matches!""
+
+## Tear Down
+When you are ready to tear down all of the infrastructure, you can execute the following commands and it will remove all AWS infrastructure, EXCEPT what was created during the Bootstrap setup. (Sudo may be needed.)
+
+```kubectl delete -f xyz_config.yaml```
+```cdk destroy```
+
+It is possible that some items may not delete properly so manual deletion of CloudFormation Stacks may be required.
