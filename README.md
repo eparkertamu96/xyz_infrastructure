@@ -16,6 +16,10 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 First bootstrap your environment if you have not already done so:
 cdk bootstrap aws://<your-account-number>/<region-to-bootstrap>
 
+Next, install all of the node modules with the following command
+
+npm install
+
 To tear down the infrastructure, run the following command:
 kubectl delete -f xyz_config.yaml
 cdk destroy
