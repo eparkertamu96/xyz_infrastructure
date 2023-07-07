@@ -7,6 +7,7 @@ This project has the following requirements.
 - Linux (Ubuntu, specifically version 22)
 - NodeJS
 - AWS CLI and CDK
+- KubeCTL
 - An AWS Account in which a user or role has the permissions to deploy and manage an EKS cluster and associated serivces.
 
 ## Steps to deploy
@@ -18,18 +19,21 @@ Much of this project was based upon the AWS EKS Blueprints Quick Start project, 
 
 2) Install nodejs if not already installed.
 ```sudo npm install nodejs```
-3) Install the AWS CLI if not already installed. Here is a link for instructions. https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
-4) Install the AWS CDK.
+3) Install kubectl. https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+4) Install the AWS CLI if not already installed. Here is a link for instructions. https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+5) Install the AWS CDK.
 ```npm install -g aws-cdk```
 
-5) Install the necessary npm modules. Execute the following command in the root directory of the project.
+6) Install the necessary npm modules. Execute the following command in the root directory of the project.
 ```npm install```
 
-6) Bootstrap your AWS account if you have not already done so. (Sudo may be required.)
+7) Bootstrap your AWS account if you have not already done so. (Sudo may be required.)
 ```cdk bootstrap aws://<your-account-number>/<region-to-bootstrap>```
 
-7) Execute the deploy.sh bash script.
+8) Execute the deploy.sh bash script.
 ```sudo bash deploy.sh```
 
 If everything works correctly, you should see the following message displayed in your command window.
