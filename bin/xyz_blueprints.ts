@@ -18,8 +18,8 @@ const addOns: Array<blueprints.ClusterAddOn> = [
     // new blueprints.addons.XrayAddOn()
 ];
 
-const account = '389837195249';
-const region = 'us-east-2';
+const account = process.env.AWS_ACCOUNT_NUMBER;
+const region = process.env.AWS_REGION;
 
 const stack = blueprints.EksBlueprint.builder()
     .account(account)
@@ -27,3 +27,4 @@ const stack = blueprints.EksBlueprint.builder()
     .addOns(...addOns)
     .build(app, 'eks-blueprint');
 // do something with stack or drop this variable
+const b = stack.getClusterInfo();
