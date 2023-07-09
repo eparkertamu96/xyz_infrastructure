@@ -33,9 +33,10 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt install make nodejs
-        npm install -g n
+        sudo npm install -g n
         n stable
-        npm install -g aws-cdk
+        sudo npm install -g aws-cdk
+        sudo npm install
         
     - name: Bootstrap Environment
       run: cdk bootstrap aws://$AWS_ACCOUNT_NUMBER/$AWS_REGION
