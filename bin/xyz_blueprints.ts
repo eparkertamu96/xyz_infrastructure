@@ -4,6 +4,10 @@ import * as blueprints from '@aws-quickstart/eks-blueprints';
 
 const app = new cdk.App();
 
+const awsPcaParams = {
+    iamPolicies: ["AWSCertificateManagerPrivateCAFullAccess"]
+  }
+
 // AddOns for the cluster.
 const addOns: Array<blueprints.ClusterAddOn> = [
     new blueprints.addons.ArgoCDAddOn,
@@ -11,7 +15,9 @@ const addOns: Array<blueprints.ClusterAddOn> = [
     // new blueprints.addons.MetricsServerAddOn,
     // new blueprints.addons.ClusterAutoScalerAddOn,
     // new blueprints.addons.ContainerInsightsAddOn,
-    new blueprints.addons.AwsLoadBalancerControllerAddOn()
+    new blueprints.addons.AwsLoadBalancerControllerAddOn(),
+    new blueprints.addons.CertManagerAddOn(),
+    new blueprints.addons.AWSPrivateCAIssuerAddon(awsPcaParams)
     //new blueprints.addons.VpcCniAddOn(),
     // new blueprints.addons.CoreDnsAddOn(),
     //new blueprints.addons.KubeProxyAddOn(),
@@ -26,5 +32,3 @@ const stack = blueprints.EksBlueprint.builder()
     .region(region)
     .addOns(...addOns)
     .build(app, 'eks-blueprint');
-// do something with stack or drop this variable
-const b = stack.getClusterInfo();
