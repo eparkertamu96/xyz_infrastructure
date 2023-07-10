@@ -42,7 +42,7 @@ jobs:
       run: cdk bootstrap aws://$AWS_ACCOUNT_NUMBER/$AWS_REGION
       
     - name: Deploy Infrastructure
-      run: cdk deploy
+      run: cdk deploy --require-approval never
       
    
         
